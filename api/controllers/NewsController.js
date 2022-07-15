@@ -25,22 +25,25 @@ module.exports = {
         let sql = 'UPDATE dc_news SET ? WHERE id = ?'
         db.query(sql, [data, newsId], (err, response) => {
             if (err) throw err
-            res.json({message: 'Update success!'})
+            res.json({ message: 'Update success!' })
         })
     },
     store: (req, res) => {
-        let data = req.body;
+        let obj1 = {
+            create_date: new Date().toISOString().slice(0, 19).replace('T', ' ')
+        };
+        const data = Object.assign(obj1, req.body);
         let sql = 'INSERT INTO dc_news SET ?'
         db.query(sql, [data], (err, response) => {
             if (err) throw err
-            res.json({message: 'Insert success!'})
+            res.json({ message: 'Insert success!', data: data })
         })
     },
     delete: (req, res) => {
         let sql = 'DELETE FROM dc_news WHERE id = ?'
         db.query(sql, [req.params.newsId], (err, response) => {
             if (err) throw err
-            res.json({message: 'Delete success!'})
+            res.json({ message: 'Delete success!' })
         })
     }
 }
