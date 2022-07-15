@@ -9,7 +9,7 @@ module.exports = {
         let sql = 'SELECT * FROM dc_news'
         db.query(sql, (err, response) => {
             if (err) throw err
-            res.json(response)
+            res.json({ articles: response })
         })
     },
     detail: (req, res) => {
