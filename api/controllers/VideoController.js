@@ -9,7 +9,7 @@ module.exports = {
         let sql = 'SELECT * FROM dc_video'
         db.query(sql, (err, response) => {
             if (err) throw err
-            res.json(response)
+            res.json({ error: 0, data: response, })
         })
     },
     detail: (req, res) => {
